@@ -198,7 +198,7 @@ TYPE_FIELD(struct vm_map vm_map, 0);
 // maybe I will add more later just for documentation purposes
 TYPE_END();
 
-TYPE_BEGIN(struct sysent, 0x30);
+TYPE_BEGIN(struct sysent, 0x30); // practically the same on 4.55
 TYPE_FIELD(uint32_t sy_narg, 0x00);
 TYPE_FIELD(void *sy_call, 0x08);
 TYPE_FIELD(uint16_t sy_auevent, 0x10);
@@ -246,13 +246,13 @@ TYPE_FIELD(struct ucred *p_ucred, 0x40);
 TYPE_FIELD(struct filedesc *p_fd, 0x48);
 TYPE_FIELD(int pid, 0xB0);
 TYPE_FIELD(struct vmspace *p_vmspace, 0x168);
-TYPE_FIELD(char p_comm[32], 0x44C);
-TYPE_FIELD(char titleid[16], 0x390);
-TYPE_FIELD(char contentid[64], 0x3D4);
-TYPE_FIELD(char path[64], 0x46C);
+TYPE_FIELD(char p_comm[32], 0x444); //4.55
+TYPE_FIELD(char titleid[16], 0x390); //4.55
+TYPE_FIELD(char contentid[64], 0x3D4); //4.55
+TYPE_FIELD(char path[64], 0x464); //4.55
 TYPE_END();
 
-TYPE_BEGIN(struct thread, 0x800); // XXX: random, don't use directly without fixing it
+TYPE_BEGIN(struct thread, 0x3D8); // XXX: random, don't use directly without fixing it
 TYPE_FIELD(struct mtx *volatile td_lock, 0);
 TYPE_FIELD(struct proc *td_proc, 8);
 TYPE_FIELD(TAILQ_ENTRY(thread) td_plist, 0x10);
